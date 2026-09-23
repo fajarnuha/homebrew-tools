@@ -1,21 +1,21 @@
 class Klassify < Formula
   desc "System One classification CLI and MCP server"
   homepage "https://github.com/fajarnuha/klassify"
-  url "https://github.com/fajarnuha/klassify/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "ad154511030fba46a302bf0099d24c5099fa21a826a1260690d22d071340db62"
+  url "https://github.com/fajarnuha/klassify/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "8123a5c41fd00bf06a5d9bf7d114508fcd09705c3b2448a10f777917354698ad"
   license "Apache-2.0"
 
   depends_on :macos
 
   resource "binary" do
     on_arm do
-      url "https://github.com/fajarnuha/klassify/releases/download/v0.1.0/klassify-macos-arm64.tar.gz"
-      sha256 "7dbe59a1a55ff5a3d38575e186358348af2e0aca1472d09a8495b225119f2b3e"
+      url "https://github.com/fajarnuha/klassify/releases/download/v0.1.1/klassify-macos-arm64.tar.gz"
+      sha256 "cbd03fa59965ac2c5a55fa776b901127171304fada55251e524e5f2356125f86"
     end
 
     on_intel do
-      url "https://github.com/fajarnuha/klassify/releases/download/v0.1.0/klassify-macos-x64.tar.gz"
-      sha256 "b5d773d45c52ade02f7ae4f5df08087448d0a5937cbec74dd8f59cc9ffbb0401"
+      url "https://github.com/fajarnuha/klassify/releases/download/v0.1.1/klassify-macos-x64.tar.gz"
+      sha256 "e8b20f3611ff3e1fed3b924a9da5aae1885ac386da6e46c0af6b234f824746ba"
     end
   end
 
@@ -27,6 +27,7 @@ class Klassify < Formula
   end
 
   test do
-    assert_match "Commands:", shell_output("#{bin}/klassify --help")
+    assert_match "  run\n", shell_output("#{bin}/klassify --help")
+    assert_match "-j, --state-json", shell_output("#{bin}/klassify run --help")
   end
 end
