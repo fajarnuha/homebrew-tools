@@ -1,27 +1,28 @@
 class Klassify < Formula
   desc "System One classification CLI and MCP server"
   homepage "https://github.com/fajarnuha/klassify"
-  url "https://github.com/fajarnuha/klassify/archive/refs/tags/0.4.0.tar.gz"
-  sha256 "ce7cdd0d9d96765447e10ec4da48689e8839441c618c82e3991ec47616c48633"
+  url "https://github.com/fajarnuha/klassify/archive/refs/tags/0.5.0.tar.gz"
+  sha256 "cf2a2e06fe68b69aa44aa866b56aca936ec442eb320055c68bff41b313593d73"
   license "Apache-2.0"
 
   depends_on :macos
 
   resource "binary" do
     on_arm do
-      url "https://github.com/fajarnuha/klassify/releases/download/0.4.0/klassify-macos-arm64.tar.gz"
-      sha256 "2eff12a68902ebf9a84a30a5056b5897a593daa765282f344e029b7c6fb721dc"
+      url "https://github.com/fajarnuha/klassify/releases/download/0.5.0/klassify-macos-arm64.tar.gz"
+      sha256 "666be723eed7000e6187828e89f5fc538d4dd6ec0c6a98a07f1a23bb1815864b"
     end
 
     on_intel do
-      url "https://github.com/fajarnuha/klassify/releases/download/0.4.0/klassify-macos-x64.tar.gz"
-      sha256 "d899c0b68824d532c1214998e55b8177d1fb26af865ab75001b271cbd365e5dd"
+      url "https://github.com/fajarnuha/klassify/releases/download/0.5.0/klassify-macos-x64.tar.gz"
+      sha256 "0e0613330412150ec6a48e09d8b03fd7e1afa19bfc30b345101e65498be47cae"
     end
   end
 
   def install
     resource("binary").stage do
       bin.install "klassify"
+      libexec.install "klassify-recipe-runner" if File.directory?("klassify-recipe-runner")
       pkgshare.install "LICENSE"
     end
   end
